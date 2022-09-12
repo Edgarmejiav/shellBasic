@@ -1,13 +1,7 @@
 #!/bin/bash
+
 cd 
 cd /home/edgarmejiav/Documentos/docker/mongo/backups
-echo    "|---------------------------|"
-echo    "|***************************|"
-echo    "|*********RESTORE***********|"
-echo    "|*****MONGO BACKPUS*********|"
-echo    "|***************************|"
-echo    "|---------------------------|"
-
 
 backRestore() {
 echo -e "\n"
@@ -41,11 +35,19 @@ do
     #Limpiar la pantalla
     clear
     #Desplegar el menú de opciones
-    echo "_________________________________________"
-    echo "          PGUTIL - utils mongo          "
-    echo "_________________________________________"
-    echo "                MAIN            "
-    echo "_________________________________________"
+
+SCRIPT=$(readlink -f $0);
+dir_base=`dirname $SCRIPT`;
+ 
+echo "$dir_base";
+
+echo    "|---------------------------|"
+echo    "|***************************|"
+echo    "|*********RESTORE***********|"
+echo    "|*****MONGO BACKPUS*********|"
+echo    "|***************************|"
+echo    "|---------------------------|"
+
     echo "1. Restore Backup mongo "
     echo "2. create BACKUP"
     echo "3. Salir"

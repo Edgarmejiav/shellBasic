@@ -1,9 +1,6 @@
 #!/bin/bash
 
-cd 
-cd /home/edgarmejiav/Documentos/docker/mongo/backups
-
-backRestore() {
+restoreBackupMongo () {
 echo -e "\n"
 fils+=()
 a=0
@@ -17,14 +14,14 @@ done
 read -p "Select the backup to restore: " num
 echo ${fils[$num]}
 docker  exec -it mongo  mongorestore -u super -p passw0rd --authenticationDatabase admin /backups/${fils[$num]} --gzip --nsInclude=db.* --drop
-    read -n 1 -s -r -p "PRESIONE [ENTER] para continuar..."
+    read -n 1 -s -r -p "PRESS [ENTER] to continue..."
 
 }
 
-createBackup (){
+createBackupMongo (){
 
   docker  exec -it mongo  mongodump --db db --username super --password passw0rd --authenticationDatabase admin --gzip --out  /backups/`date +"%m-%d-%y"`
-      read -n 1 -s -r -p "PRESIONE [ENTER] para continuar..."
+      read -n 1 -s -r -p "PRESS [ENTER] to continue..."
 
 
 }
@@ -58,11 +55,11 @@ echo    "|---------------------------|"
     #Validar la opción ingresada
     case $opcion in
         1)
-            backRestore
+            restoreBackupMongo
             sleep 3
             ;;
         2) 
-            createBackup
+            createBackupMongo
             sleep 3
             ;;
      
